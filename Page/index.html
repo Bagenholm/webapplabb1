@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QUIZ</title>
+    <link rel="stylesheet" href="CSS/stylesheet.css">
+</head>
+<body>
+    <section id="results">
+        <aside>
+            <table>
+                <tr><p>Result: </p> <p id="result"></p> </tr>
+                <tr><p>Answer: </p> <p id="answer"></p> </tr>
+            </table>
+            <label for="currentQuiz">Current quiz progress:</label>
+            <progress id="currentQuiz" max="10" value="0"></progress>
+        </aside>
+    </section>
+
+    <section>
+        <h1 id="question">Question</h1>
+        <p class="alternative" id="alt1" onclick="selectAnswer(0)"></p>
+        <p class="alternative" id="alt2" onclick="selectAnswer(1)"></p>
+        <p class="alternative" id="alt3" onclick="selectAnswer(2)"></p>
+        <p class="alternative" id="alt4" onclick="selectAnswer(3)"></p>
+    </section>
+
+    <section id="settings">
+        <label for="category">Quiz category</label>
+        <select id="category">
+            <option value="">Random questions</option>
+            <option value="9">General knowledge</option>
+            <option value="15">Video games</option>
+            <option value="11">Movies</option>
+            <option value="10">Books</option>
+        </select>
+        <br>
+        <label for="difficulty">Quiz difficulty</label>
+        <select id="difficulty">
+            <option value="">Random difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </section>
+
+    <script src="Script/script.js"></script>
+
+<footer>
+    <p><br>
+        <br>
+        <br>Patriks Quiz </p>
+</footer>
+</body>
+</html>

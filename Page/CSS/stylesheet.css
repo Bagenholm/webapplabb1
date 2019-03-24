@@ -1,0 +1,20 @@
+html {
+    font-family: Calibri, Arial;
+}
+
+@media screen and (max-width: 600px){
+    body {
+        background-color: black;
+        color: ivory;
+        outline-width: thin;
+    }
+
+    aside {
+        text-align: left;
+        display: inline;
+    }
+}
+
+@media screen and (min-width: 601px) {
+
+}
