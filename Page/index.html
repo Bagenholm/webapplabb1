@@ -11,24 +11,24 @@
             <section class="top">
                 <label for="currentQuiz">Current quiz progress:</label>
                 <progress id="currentQuiz" max="10" value="0"></progress><br>
-                <span>Result:</span>  <span id="result"></span><br>
+                <span>Result:</span>  <span id="result">0/0 </span><br>
                 <span>Answer: </span> <span id="answer"></span>
             </section>
         </div>
         <div class="box item2">
             <h1 id="question">Question</h1>
         </div>
-        <div class="box alt0" onclick="selectAnswer(0)">
-            <p class="alternative" id="alt1"></p>
+        <div id="alt0box" class="altbox" onclick="selectAnswer(0)">
+            <p class="alternative" id="alt0text"></p>
         </div>
-        <div class="box alt1" onclick="selectAnswer(1)">
-            <p class="alternative" id="alt2"></p>
+        <div id="alt1box" class="altbox" onclick="selectAnswer(1)">
+            <p class="alternative" id="alt1text"></p>
         </div>
-        <div class="box alt2" onclick="selectAnswer(2)">
-            <p class="alternative" id="alt3"></p>
+        <div id="alt2box" class="altbox" onclick="selectAnswer(2)">
+            <p class="alternative" id="alt2text"></p>
         </div>
-        <div class="box alt3" onclick="selectAnswer(3)">
-            <p class="alternative" id="alt4"></p>
+        <div id="alt3box" class="altbox" onclick="selectAnswer(3)">
+            <p class="alternative" id="alt3text"></p>
         </div>
         <div class="box item7">
             <section id="settings">
