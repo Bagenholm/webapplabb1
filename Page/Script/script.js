@@ -27,18 +27,18 @@ function getQuestions() {
     });
 }
 
-function makeAlternativeArray() {
-    let altArray = [questionArray.results[nextQuestionIndex].correct_answer, questionArray.results[nextQuestionIndex].incorrect_answers[0], questionArray.results[nextQuestionIndex].incorrect_answers[1], questionArray.results[nextQuestionIndex].incorrect_answers[2]];
-    return altArray//.sort();
-}
-
 function newQuestion() {
-    alternatives = makeAlternativeArray();
+    alternatives = makeAlternativeArray().sort();
     document.getElementById("question").innerHTML = questionArray.results[nextQuestionIndex].question;
     document.getElementById("alt1").innerHTML = alternatives[0];
     document.getElementById("alt2").innerHTML = alternatives[1];
     document.getElementById("alt3").innerHTML = alternatives[2];
     document.getElementById("alt4").innerHTML = alternatives[3];
+}
+
+function makeAlternativeArray() {
+    var altArray = [questionArray.results[nextQuestionIndex].correct_answer, questionArray.results[nextQuestionIndex].incorrect_answers[0], questionArray.results[nextQuestionIndex].incorrect_answers[1], questionArray.results[nextQuestionIndex].incorrect_answers[2]];
+    return altArray;
 }
 
 function selectAnswer(choice) {
