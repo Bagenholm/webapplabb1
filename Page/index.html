@@ -12,11 +12,11 @@
                 <label for="currentQuiz">Current quiz progress:</label>
                 <progress id="currentQuiz" max="10" value="0"></progress><br>
                 <span>Result:</span>  <span id="result">0/0 </span><br>
-                <span>Answer: </span> <span id="answer"></span>
+                <span>Answer: </span> <span id="answer"></span><br>
             </section>
         </div>
         <div class="box questionBox">
-            <h1 id="question">Question</h1>
+            <h1 id="question">Click to load questions. Click to make a choice. Then click for next questions.</h1>
         </div>
         <div id="alt0box" class="altbox" onclick="selectAnswer(0)">
             <p class="alternative" id="alt0text"></p>
@@ -31,6 +31,9 @@
             <p class="alternative" id="alt3text"></p>
         </div>
         <div class="box settingsBox">
+            <span id="infoText">Click to make a choice then click for next question.</span>
+            <br>
+            <br>
             <section id="settings">
                 <section id="category-section">
                     <label for="category">Quiz category: </label>
@@ -59,11 +62,5 @@
     </section>
 
     <script src="Script/script.js"></script>
-
-<footer>
-    <p><br>
-        <br>
-
-</footer>
 </body>
 </html>

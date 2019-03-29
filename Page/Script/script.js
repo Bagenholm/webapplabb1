@@ -2,9 +2,10 @@ var basicApiAdress = 'https://opentdb.com/api.php?amount=10&type=multiple';
 var questionArray;
 var nextQuestionIndex = 0;
 var alternatives;
-var points = 0;
+var totalPoints = 0;
 var questionsAsked = 0;
 var questionState = true;
+var currentQuizPoints = 0;
 
 // Flöde:
 //     1. Hämta vald category och difficulty.
@@ -14,6 +15,7 @@ var questionState = true;
 //     5. svarsalternativ onClick: Uppdatera färger för att matcha rätt/fel. Öka index frågearray. Uppdatera result.
 //     6. svarsalternativ onClick: Ändra färg och hämta ny fråga.
 //     7. Efter frågearray[9], börja om från 1.
+
 
 getQuestions();
 
@@ -64,16 +66,17 @@ function selectAnswer(choice) {
         document.getElementById("currentQuiz").value = nextQuestionIndex + 1;
         setAnswerColors();
         if (isCorrectAnswer(choice)) {
-            points++;
+            totalPoints++;
+            currentQuizPoints++;
             document.getElementById("answer").innerHTML = "Correct!";
         } else {
             document.getElementById("answer").innerHTML = "Incorrect! The right answer was " + questionArray.results[nextQuestionIndex].correct_answer;
         }
         questionsAsked++;
-        document.getElementById("result").innerHTML = "" + points + "/" + questionsAsked;
+        document.getElementById("result").innerHTML = "" + totalPoints + "/" + questionsAsked;
         questionState = false;
     } else {
-        document.getElementById("result").innerHTML = "" + points + "/" + questionsAsked;
+        document.getElementById("result").innerHTML = "" + totalPoints + "/" + questionsAsked;
         nextQuestionIndex++;
         checkQuestionIndex();
         setAlternativeColors();
@@ -91,9 +94,10 @@ function checkQuestionIndex() {
         checkSettings();
     } else {
         document.getElementById("currentQuiz").value = 0;
-        nextQuestionIndex = 0;
         getQuestions();
-        console.log("Out of questions! Your total was " + points)
+        quizEndResult();
+        currentQuizPoints = 0;
+        nextQuestionIndex = 0;
     }
 }
 
@@ -113,4 +117,8 @@ function setAnswerColors(){
             elements[i].style.backgroundColor = "red"
         }
     }
+}
+
+function quizEndResult() {
+    document.getElementById("infoText").innerHTML = "Last quiz: " + currentQuizPoints + " / 10";
 }
