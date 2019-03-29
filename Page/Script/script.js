@@ -6,6 +6,7 @@ var totalPoints = 0;
 var questionsAsked = 0;
 var questionState = true;
 var currentQuizPoints = 0;
+var altBoxes = document.querySelectorAll("div");
 
 // Flöde:
 //     1. Hämta vald category och difficulty.
@@ -16,7 +17,7 @@ var currentQuizPoints = 0;
 //     6. svarsalternativ onClick: Ändra färg och hämta ny fråga.
 //     7. Efter frågearray[9], börja om från 1.
 
-
+setOnClick();
 getQuestions();
 
 function getQuestions() {
@@ -61,6 +62,14 @@ function makeAlternativeArray() {
     return altArray;
 }
 
+function setOnClick() {
+    for (let i = 0; i < altBoxes.length; i++) {
+        altBoxes[i].onclick = function (e) {
+            selectAnswer(i);
+        }
+    }
+}
+
 function selectAnswer(choice) {
     if (questionState) {
         document.getElementById("currentQuiz").value = nextQuestionIndex + 1;
@@ -81,6 +90,16 @@ function selectAnswer(choice) {
         checkQuestionIndex();
         setAlternativeColors();
         questionState = true;
+    }
+}
+
+function setAnswerColors(){
+    for (let i = 0; i < altBoxes.length; i++) {
+        if (alternatives[i] == questionArray.results[nextQuestionIndex].correct_answer) {
+            altBoxes[i].style.backgroundColor = "green";
+        } else {
+            altBoxes[i].style.backgroundColor = "red"
+        }
     }
 }
 
@@ -105,17 +124,6 @@ function setAlternativeColors() {
     elements = document.getElementsByClassName("altbox");
     for (let i = 0; i < elements.length ; i++) {
         elements[i].style.backgroundColor = "#444";
-    }
-}
-
-function setAnswerColors(){
-    elements = document.getElementsByClassName("altbox");
-    for (let i = 0; i < elements.length; i++) {
-        if (alternatives[i] == questionArray.results[nextQuestionIndex].correct_answer) {
-            elements[i].style.backgroundColor = "green";
-        } else {
-            elements[i].style.backgroundColor = "red"
-        }
     }
 }
 
