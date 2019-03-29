@@ -3,67 +3,121 @@ html {
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 600px){
-    body {
-        background-color: black;
-        color: ivory;
-        outline-width: thin;
+body {
+    background-color: black;
+    color: ivory;
+}
+
+@media screen and (min-width: 601px) {
+    .boxWrapper {
+        width: 100%;
+        height: 1000px;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(4, 130px);
+        grid-template-rows: repeat(8, 100px);
+        align-content: center;
+        justify-content: center;
+    }
+
+    .box {
+        background-color: #444;
+        border-radius: 4%;
+        padding: 2%;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .altbox {
+        text-align: center;
+        font-size: 140%;
+    }
+
+    .questionBox {
+        display: table;
+        height: 100%;
+    }
+
+    #question {
+        display: table-cell;
+        vertical-align: middle;
     }
 }
 
-.boxWrapper {
-    width: 480px;
-    height: 640px;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(4, 110px);
-    grid-template-rows: repeat(4,130px);
-    justify-content: center;
-    align-content: center;
-}
+@media screen and (max-width: 600px){
+    .boxWrapper {
+        width: 100vmin;
+        height: 100vmax;
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(4, 22vmin);
+        grid-template-rows: repeat(8, 12vmax);
+    }
 
-.box {
-    background-color: #444;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px;
+    .box {
+        background-color: #444;
+        border-radius: 5%;
+        padding: 2%;
 
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 
 }
 
 .altbox {
     background-color: #444;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 5%;
+    padding: 4%;
+
+    grid-row: 4 / 6;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-.item1 {
+#alt0box {
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+}
+
+#alt1box {
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
+}
+
+#alt2box {
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+}
+
+#alt3box {
+    grid-column: 3 / 5;
+    grid-row: 5 / 6;
+}
+
+.progressBox {
     grid-column: 1 / 5;
 }
 
-.item2 {
-    grid-column: 1 / 3;
+.questionBox {
+    grid-column: 1 / 5;
     grid-row: 2 / 4;
 }
 
-.item7 {
+.settingsBox {
     grid-column: 1 / 5;
+    grid-row: 6 / 8;
 }
 
-@media screen and (min-width: 601px) {
 
-}

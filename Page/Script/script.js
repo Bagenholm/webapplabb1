@@ -6,17 +6,34 @@ var points = 0;
 var questionsAsked = 0;
 var questionState = true;
 
+// Flöde:
+//     1. Hämta vald category och difficulty.
+//     2. Hämta frågor från api till frågearray.
+//     3. Lägg svarsalternativ i en sorterad array.
+//     4. Uppdatera html: fråga och svarsalternativ.
+//     5. svarsalternativ onClick: Uppdatera färger för att matcha rätt/fel. Öka index frågearray. Uppdatera result.
+//     6. svarsalternativ onClick: Ändra färg och hämta ny fråga.
+//     7. Efter frågearray[9], börja om från 1.
+
 getQuestions();
 
 function getQuestions() {
     var url = checkSettings();
-    console.log(url);
-    fetch(url).then(function(response) {
-        return response.json();
-    }).then(function (myJson) {
-        questionArray = JSON.parse(JSON.stringify(myJson));
-        newQuestion();
-    });
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            questionArray = JSON.parse(this.responseText);
+            newQuestion();
+        } else if (this.status == 500) {
+            document.getElementById("question").innerHTML = "Umm.. I don't know any questions, api is down. Err.. What's your favorite dinosaur?"
+            document.getElementById("alt0text").innerHTML = "T-rex.";
+            document.getElementById("alt1text").innerHTML = "Tyrannosaurus Rex.";
+            document.getElementById("alt2text").innerHTML = "That short-armed one with a temper.";
+            document.getElementById("alt3text").innerHTML = "Not T-rex."; // Not T-rex? What? The answer is *always* T-rex.
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
 }
 
 function checkSettings() {
@@ -35,16 +52,18 @@ function newQuestion() {
 }
 
 function makeAlternativeArray() {
-    var altArray = [questionArray.results[nextQuestionIndex].correct_answer, questionArray.results[nextQuestionIndex].incorrect_answers[0], questionArray.results[nextQuestionIndex].incorrect_answers[1], questionArray.results[nextQuestionIndex].incorrect_answers[2]];
+    var altArray = [questionArray.results[nextQuestionIndex].correct_answer,
+        questionArray.results[nextQuestionIndex].incorrect_answers[0],
+        questionArray.results[nextQuestionIndex].incorrect_answers[1],
+        questionArray.results[nextQuestionIndex].incorrect_answers[2]];
     return altArray;
 }
 
 function selectAnswer(choice) {
     if (questionState) {
-       // setAlternativeColors();
         document.getElementById("currentQuiz").value = nextQuestionIndex + 1;
         setAnswerColors();
-        if (alternatives[choice] == questionArray.results[nextQuestionIndex].correct_answer) {
+        if (isCorrectAnswer(choice)) {
             points++;
             document.getElementById("answer").innerHTML = "Correct!";
         } else {
@@ -60,6 +79,10 @@ function selectAnswer(choice) {
         setAlternativeColors();
         questionState = true;
     }
+}
+
+function isCorrectAnswer(choice) {
+    return alternatives[choice] == questionArray.results[nextQuestionIndex].correct_answer;
 }
 
 function checkQuestionIndex() {

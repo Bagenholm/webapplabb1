@@ -7,7 +7,7 @@
 </head>
 <body>
     <section class="boxWrapper">
-        <div class="box item1">
+        <div class="box progressBox">
             <section class="top">
                 <label for="currentQuiz">Current quiz progress:</label>
                 <progress id="currentQuiz" max="10" value="0"></progress><br>
@@ -15,7 +15,7 @@
                 <span>Answer: </span> <span id="answer"></span>
             </section>
         </div>
-        <div class="box item2">
+        <div class="box questionBox">
             <h1 id="question">Question</h1>
         </div>
         <div id="alt0box" class="altbox" onclick="selectAnswer(0)">
@@ -30,7 +30,7 @@
         <div id="alt3box" class="altbox" onclick="selectAnswer(3)">
             <p class="alternative" id="alt3text"></p>
         </div>
-        <div class="box item7">
+        <div class="box settingsBox">
             <section id="settings">
                 <section id="category-section">
                     <label for="category">Quiz category: </label>
@@ -42,7 +42,7 @@
                         <option value="10">Books</option>
                     </select>
                 </section>
-                <br><br>
+                <br>
                 <section id="difficulty-section">
                     <label for="difficulty">Quiz difficulty: </label>
                     <select id="difficulty">
@@ -52,6 +52,7 @@
                         <option value="hard">Hard</option>
                     </select>
                 </section>
+                <p>Settings will take affect after the current quiz is finished.</p>
                 <p style="text-align: end">Patriks Quiz </p>
             </section>
         </div>
